@@ -32,7 +32,7 @@ void loop() {
         for (uint8_t index = 0; index < 2; index++) {
             for (uint8_t h = 0; h < 255; h++) {
                 pbhub.setPWM(ch, index, h);
-                Serial.printf("ch:%d index:%d PWM: %.1f%\r\n", ch, index,
+                Serial.printf("ch:%d index:%d PWM: %.1f%%\r\n", ch, index,
                               h / 255.0 * 100.0);
                 delay(10);
             }
