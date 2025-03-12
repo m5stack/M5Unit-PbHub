@@ -92,3 +92,11 @@ bool M5UnitPbHub::setServoPulse(uint8_t ch, uint8_t index, uint16_t value) {
     data[1] = value >> 8;
     return _i2c.writeBytes(_addr, reg, data, 2);
 }
+
+bool M5UnitPbHub::setLEDShowMode(uint8_t mode) {
+    return _i2c.writeByte(_addr, 0xFA, mode);
+}
+
+uint8_t M5UnitPbHub::getLEDShowMode(void) {
+    return _i2c.readByte(_addr, 0xFA);
+}

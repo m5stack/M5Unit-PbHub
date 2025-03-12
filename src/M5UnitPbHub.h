@@ -32,6 +32,8 @@ class M5UnitPbHub {
     bool setLEDBrightness(uint8_t ch, uint8_t value);
     bool fillLEDColor(uint8_t ch, uint8_t start, uint8_t count,
                       uint32_t rgb888);
+    uint8_t getLEDShowMode(void);
+    bool setLEDShowMode(uint8_t mode);                      
 };
 
 #endif
