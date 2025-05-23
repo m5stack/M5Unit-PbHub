@@ -16,11 +16,21 @@
 
 M5UnitPbHub pbhub;
 
-void setup() {
+void setup()
+{
     Serial.begin(115200);
     if (!pbhub.begin(&Wire, UNIT_PBHUB_I2C_ADDR, 21, 22, 100000U)) {
         Serial.println("Couldn't find Pbhub");
         while (1) delay(1);
+    }
+    uint8_t firmware_version = pbhub.getFirmwareVersion();
+    Serial.printf("Firmware Version: %d\n", firmware_version);
+    if (firmware_version < 2) {
+        while (1) {
+            delay(1000);
+            Serial.println("Firmware Version is too old, please update the firmware");
+            Serial.println("Please visit https://docs.m5stack.com/en/unit/pbhub_1.1");
+        }
     }
     for (uint8_t ch = 0; ch < 6; ch++) {
         pbhub.setLEDNum(ch, 74);
@@ -28,7 +38,8 @@ void setup() {
     }
 }
 
-void loop() {
+void loop()
+{
     // ch: 0-5
     // index: 0-1
     // status: 0/1
